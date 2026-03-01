@@ -2,30 +2,55 @@
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import { siteContent } from '../../content/site-content';
+import { getLocalizedPath, withBase } from '../../lib/i18n';
 
 const locale = 'en';
 const copy = siteContent[locale];
 const page = copy.technology;
+const cardIcons = ['⚡', '◎', '☕'];
 ---
 
 <Layout title={page.metaTitle} description={page.metaDescription} lang={locale}>
 	<div class="page">
+		<div class="overlay"></div>
 		<div class="shell">
-			<SiteHeader current="technology" theme="dark" locale={locale} />
+			<SiteHeader current="technology" theme="light" locale={locale} />
 
 			<main>
-				<h1>{page.heading}</h1>
-				<p>{page.intro}</p>
+				<section class="hero">
+					<h1>{page.heading}</h1>
+					<p class="subheading">{page.subheading}</p>
+					<p class="lead">{page.intro}</p>
+				</section>
 
-				<section class="card-grid">
+				<section id="how-it-works" class="how-it-works">
+					<h2>{page.howItWorksTitle}</h2>
+					<div class="card-grid">
 					{
-						page.cards.map((card) => (
+						page.cards.map((card, index) => (
 							<article class="card">
-								<h2>{card.title}</h2>
+								<p class="icon" aria-hidden="true">{cardIcons[index] ?? '•'}</p>
+								<h3>{card.title}</h3>
 								<p>{card.text}</p>
 							</article>
 						))
 					}
+					</div>
+				</section>
+
+				<section class="why">
+					<h2>{page.whyTitle}</h2>
+					{page.whyParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+					<p class="quote">
+						<em>
+							{page.quote[0]}<br />
+							{page.quote[1]}
+						</em>
+					</p>
+					<div class="actions">
+						<a class="btn" href="#how-it-works">{page.primaryCta}</a>
+						<a class="btn" href={withBase(getLocalizedPath(locale, 'contact'))}>{page.secondaryCta}</a>
+					</div>
 				</section>
 			</main>
 		</div>
@@ -34,55 +59,167 @@ const page = copy.technology;
 
 <style>
 	.page {
+		position: relative;
 		min-height: 100vh;
-		background: rgba(247, 243, 239, 0.82);
-		color: #151515;
+		background-image: var(--nebura-shared-bg);
+		background-size: cover;
+		background-position: center;
+		color: #fff;
+	}
+
+	.overlay {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(circle at 68% 36%, rgba(170, 88, 28, 0.26), transparent 38%),
+			linear-gradient(180deg, rgba(6, 5, 5, 0.74) 0%, rgba(5, 4, 4, 0.82) 100%);
+		pointer-events: none;
 	}
 
 	.shell {
+		position: relative;
 		max-width: 1180px;
 		margin: 0 auto;
-		padding: 28px 20px 60px;
+		padding: 28px 20px 68px;
 	}
 
-	h1 {
-		margin: 70px 0 18px;
+	main {
+		max-width: 860px;
+	}
+
+	.hero h1 {
+		margin: clamp(72px, 16vh, 138px) 0 10px;
 		font-family: 'Times New Roman', Georgia, serif;
-		font-size: clamp(40px, 7vw, 80px);
-		line-height: 1.06;
+		font-size: clamp(44px, 7vw, 74px);
+		line-height: 1.08;
+		font-weight: 600;
 	}
 
-	main > p {
-		max-width: 820px;
-		font-size: clamp(20px, 2vw, 28px);
+	.subheading {
+		margin: 0;
+		font-size: clamp(28px, 3vw, 42px);
+		font-weight: 500;
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	.lead {
+		margin: 18px 0 0;
+		max-width: 720px;
+		font-size: clamp(22px, 2.4vw, 38px);
 		line-height: 1.35;
-		color: #2f2f2f;
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.how-it-works {
+		margin-top: clamp(80px, 11vh, 130px);
+	}
+
+	h2 {
+		margin: 0 0 24px;
+		font-family: 'Times New Roman', Georgia, serif;
+		font-size: clamp(48px, 6vw, 68px);
+		line-height: 1.08;
+		font-weight: 500;
 	}
 
 	.card-grid {
 		display: grid;
-		gap: 16px;
+		gap: 20px;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		margin-top: 26px;
 	}
 
 	.card {
-		background: #fff;
-		padding: 24px;
-		border-radius: 18px;
-		border: 1px solid rgba(0, 0, 0, 0.08);
+		padding: 30px 26px;
+		border-radius: 16px;
+		background: rgba(26, 25, 25, 0.62);
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		backdrop-filter: blur(5px);
 	}
 
-	h2 {
-		margin: 0 0 10px;
-		font-family: 'Times New Roman', Georgia, serif;
-		font-size: 30px;
+	.icon {
+		margin: 0;
+		font-size: 36px;
+		line-height: 1;
+		color: #f0c49e;
+	}
+
+	h3 {
+		margin: 16px 0 10px;
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 1.2;
 	}
 
 	.card p {
 		margin: 0;
-		font-size: 17px;
+		font-size: 34px;
 		line-height: 1.6;
-		color: #333;
+		color: rgba(255, 255, 255, 0.78);
+	}
+
+	.why {
+		margin-top: clamp(84px, 11vh, 136px);
+		padding-bottom: 24px;
+	}
+
+	.why > p {
+		max-width: 760px;
+		font-size: 36px;
+		line-height: 1.55;
+		color: rgba(255, 255, 255, 0.74);
+		margin: 0 0 20px;
+	}
+
+	.quote {
+		margin-top: 26px;
+		font-size: 46px;
+		line-height: 1.28;
+		color: #f0c49e;
+	}
+
+	.actions {
+		display: flex;
+		gap: 14px;
+		flex-wrap: wrap;
+		margin-top: 26px;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 22px;
+		border: 1px solid rgba(255, 255, 255, 0.52);
+		border-radius: 999px;
+		text-decoration: none;
+		color: rgba(255, 255, 255, 0.92);
+		font-size: 28px;
+		transition: background-color 0.2s ease;
+	}
+
+	.btn:hover {
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	@media (max-width: 980px) {
+		.hero h1 {
+			margin-top: 86px;
+		}
+
+		h2 {
+			font-size: clamp(34px, 8vw, 52px);
+		}
+
+		h3,
+		.card p,
+		.why > p,
+		.quote,
+		.btn {
+			font-size: clamp(20px, 4.2vw, 30px);
+		}
+
+		.quote {
+			line-height: 1.35;
+		}
 	}
 </style>

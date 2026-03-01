@@ -30,8 +30,15 @@ interface TechnologyContent {
 	metaTitle: string;
 	metaDescription: string;
 	heading: string;
+	subheading: string;
 	intro: string;
+	howItWorksTitle: string;
 	cards: Card[];
+	whyTitle: string;
+	whyParagraphs: string[];
+	quote: string[];
+	primaryCta: string;
+	secondaryCta: string;
 }
 
 interface PeopleContent {

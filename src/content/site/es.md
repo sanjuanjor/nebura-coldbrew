@@ -1,7 +1,7 @@
 ---
 languageName: Español
 nav:
-  about: About
+  about: Nosotros
   technology: Tecnología
   people: Personas y cultura
   contact: Contacto

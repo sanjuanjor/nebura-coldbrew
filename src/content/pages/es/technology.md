@@ -1,13 +1,24 @@
 ---
 metaTitle: Tecnología | Nebura Coffee
 metaDescription: Tecnología de ultrasonidos para acelerar la difusión y extracción de café cold brew.
-heading: Tecnología
-intro: Nebura usa ultrasonidos para acelerar la difusión del café y optimizar la extracción.
+heading: Descubre la tecnología
+subheading: Extracción de café impulsada por ultrasonidos
+intro: Usamos energía ultrasónica controlada para acelerar drásticamente la extracción en frío, sin comprometer sabor ni calidad.
+howItWorksTitle: Cómo funciona
 cards:
-  - title: Difusión asistida por ultrasonidos
-    text: Las ondas ultrasónicas incrementan la transferencia entre agua y café, reduciendo los tiempos de proceso frente a un cold brew tradicional.
-  - title: Extracción en minutos
-    text: El objetivo es pasar de procesos de varias horas a ciclos de minutos, manteniendo sabor y repetibilidad en lotes.
-  - title: Escalable y controlable
-    text: Parámetros como tiempo, intensidad y temperatura permiten ajustar perfiles según origen, tueste y receta de producto.
+  - title: Extracción acelerada
+    text: Cold brew en minutos en lugar de horas.
+  - title: Controlada y repetible
+    text: Control preciso del tiempo, la energía y los parámetros del proceso.
+  - title: Sabor primero
+    text: Sabor limpio, menor acidez y sin sobreextracción agresiva.
+whyTitle: ¿Por qué ultrasonidos?
+whyParagraphs:
+  - El cold brew tradicional depende del tiempo. Nebura se apoya en la física.
+  - Al aplicar energía ultrasónica reducimos las limitaciones de difusión del método convencional. Así extraemos más en menos tiempo y con mayor consistencia.
+quote:
+  - No se trata de hacer café más rápido,
+  - se trata de extraer de forma más inteligente.
+primaryCta: Explorar el proceso
+secondaryCta: Contactar
 ---
