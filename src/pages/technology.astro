@@ -1,44 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { siteContent } from '../content/site-content';
+
+const locale = 'es';
+const copy = siteContent[locale];
+const page = copy.technology;
 ---
 
-<Layout
-	title="Technology | Nebura Coffee"
-	description="Tecnología de ultrasonidos para difundir y extraer café cold brew en minutos."
->
+<Layout title={page.metaTitle} description={page.metaDescription} lang={locale}>
 	<div class="page">
 		<div class="shell">
-			<SiteHeader current="technology" theme="dark" />
+			<SiteHeader current="technology" theme="dark" locale={locale} />
 
 			<main>
-				<h1>Technology</h1>
-				<p>
-					Nebura usa ultrasonidos para acelerar la difusión del café y optimizar la extracción.
-				</p>
+				<h1>{page.heading}</h1>
+				<p>{page.intro}</p>
 
 				<section class="card-grid">
-					<article class="card">
-						<h2>Difusión asistida por ultrasonidos</h2>
-						<p>
-							Las ondas ultrasónicas incrementan la transferencia entre agua y café, reduciendo los
-							tiempo de proceso frente a un cold brew tradicional.
-						</p>
-					</article>
-					<article class="card">
-						<h2>Extracción en minutos</h2>
-						<p>
-							El objetivo es pasar de procesos de varias horas a ciclos de minutos, manteniendo sabor
-							y repetibilidad en lotes.
-						</p>
-					</article>
-					<article class="card">
-						<h2>Escalable y controlable</h2>
-						<p>
-							Parámetros como tiempo, intensidad y temperatura permiten ajustar perfiles según origen,
-							tueste y receta de producto.
-						</p>
-					</article>
+					{
+						page.cards.map((card) => (
+							<article class="card">
+								<h2>{card.title}</h2>
+								<p>{card.text}</p>
+							</article>
+						))
+					}
 				</section>
 			</main>
 		</div>

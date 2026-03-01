@@ -1,45 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { siteContent } from '../content/site-content';
+
+const locale = 'es';
+const copy = siteContent[locale];
+const page = copy.people;
 ---
 
-<Layout
-	title="People & Culture | Nebura Coffee"
-	description="Equipo, cultura y forma de trabajar en Nebura Coffee."
->
+<Layout title={page.metaTitle} description={page.metaDescription} lang={locale}>
 	<div class="page">
 		<div class="shell">
-			<SiteHeader current="people" theme="dark" />
+			<SiteHeader current="people" theme="dark" locale={locale} />
 
 			<main>
-				<h1>People &amp; Culture</h1>
-				<p>
-					Nebura nace en España con mentalidad de laboratorio y ritmo de startup: probar rápido,
-					medir y mejorar.
-				</p>
+				<h1>{page.heading}</h1>
+				<p>{page.intro}</p>
 
 				<section class="card-grid">
-					<article class="card">
-						<h2>Equipo en construcción</h2>
-						<p>
-							Estamos en una fase inicial, formando un equipo multidisciplinar entre producto,
-							tecnología y operaciones de café.
-						</p>
-					</article>
-					<article class="card">
-						<h2>Aprendizaje continuo</h2>
-						<p>
-							Cada iteración técnica se convierte en mejora de proceso, con foco en calidad de taza y
-							eficiencia.
-						</p>
-					</article>
-					<article class="card">
-						<h2>Ambición global</h2>
-						<p>
-							Aunque empezamos en España, el objetivo es crear una tecnología de extracción con
-							aplicación internacional.
-						</p>
-					</article>
+					{
+						page.cards.map((card) => (
+							<article class="card">
+								<h2>{card.title}</h2>
+								<p>{card.text}</p>
+							</article>
+						))
+					}
 				</section>
 			</main>
 		</div>

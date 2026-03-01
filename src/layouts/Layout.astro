@@ -2,16 +2,18 @@
 interface Props {
 	title?: string;
 	description?: string;
+	lang?: 'es' | 'en';
 }
 
 const {
 	title = 'Nebura Coffee | Cold Brew with Ultrasound',
 	description = 'Nebura Coffee creates cold brew in minutes using ultrasound extraction technology.',
+	lang = 'es',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />

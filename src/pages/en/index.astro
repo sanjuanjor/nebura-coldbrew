@@ -1,0 +1,12 @@
+---
+import Welcome from '../../components/Welcome.astro';
+import Layout from '../../layouts/Layout.astro';
+import { siteContent } from '../../content/site-content';
+
+const locale = 'en';
+const copy = siteContent[locale];
+---
+
+<Layout title={copy.home.metaTitle} description={copy.home.metaDescription} lang={locale}>
+	<Welcome locale={locale} />
+</Layout>

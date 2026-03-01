@@ -1,38 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { siteContent } from '../content/site-content';
+
+const locale = 'es';
+const copy = siteContent[locale];
+const page = copy.about;
 ---
 
-<Layout
-	title="About | Nebura Coffee"
-	description="Conoce Nebura Coffee, startup de España creada por Julio Quirce para reinventar el cold brew."
->
+<Layout title={page.metaTitle} description={page.metaDescription} lang={locale}>
 	<div class="page">
 		<div class="shell">
-			<SiteHeader current="about" theme="dark" />
+			<SiteHeader current="about" theme="dark" locale={locale} />
 
 			<main>
-				<h1>About Nebura</h1>
-				<p>
-					Nebura Coffee es una empresa de España que está empezando con una misión clara: cambiar la
-					forma de preparar cold brew para hacerlo más rápido, consistente y escalable.
-				</p>
+				<h1>{page.heading}</h1>
+				<p>{page.intro}</p>
 
-				<section class="card">
-					<h2>Fundador</h2>
-					<p>
-						El creador de Nebura es <strong>Julio Quirce</strong>, quien impulsa el proyecto combinando
-						innovación tecnológica y enfoque en calidad de producto.
-					</p>
-				</section>
-
-				<section class="card">
-					<h2>Visión</h2>
-					<p>
-						Construir una nueva referencia en café de extracción en frío, donde el tiempo de
-						preparación pase de horas a minutos sin perder perfil sensorial.
-					</p>
-				</section>
+				{
+					page.cards.map((card) => (
+						<section class="card">
+							<h2>{card.title}</h2>
+							<p>{card.text}</p>
+						</section>
+					))
+				}
 			</main>
 		</div>
 	</div>

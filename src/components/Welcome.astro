@@ -1,19 +1,28 @@
 ---
 import SiteHeader from './SiteHeader.astro';
+import { siteContent, type Locale } from '../content/site-content';
+import { getLocalizedPath, withBase } from '../lib/i18n';
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = 'es' } = Astro.props;
+const copy = siteContent[locale];
 ---
 
 <div class="hero-page">
-	<SiteHeader current="home" theme="light" />
+	<SiteHeader current="home" theme="light" locale={locale} />
 
 	<main class="hero-content">
 		<h1>
-			Cold brew.<br />
-			Reinvented with ultrasound.
+			{copy.home.heroTitleLine1}<br />
+			{copy.home.heroTitleLine2}
 		</h1>
-		<p>Extracted in minutes, not hours.</p>
+		<p>{copy.home.heroSubtitle}</p>
 		<div class="actions">
-			<a class="btn btn-primary" href="/technology">Discover the technology</a>
-			<a class="btn btn-secondary" href="/about">Get to know Nebura</a>
+			<a class="btn btn-primary" href={withBase(getLocalizedPath(locale, 'technology'))}>{copy.home.primaryCta}</a>
+			<a class="btn btn-secondary" href={withBase(getLocalizedPath(locale, 'about'))}>{copy.home.secondaryCta}</a>
 		</div>
 	</main>
 </div>

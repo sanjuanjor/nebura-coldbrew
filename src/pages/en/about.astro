@@ -1,35 +1,30 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import { siteContent } from '../content/site-content';
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { siteContent } from '../../content/site-content';
 
-const locale = 'es';
+const locale = 'en';
 const copy = siteContent[locale];
-const page = copy.contact;
+const page = copy.about;
 ---
 
 <Layout title={page.metaTitle} description={page.metaDescription} lang={locale}>
 	<div class="page">
 		<div class="shell">
-			<SiteHeader current="contact" theme="dark" locale={locale} />
+			<SiteHeader current="about" theme="dark" locale={locale} />
 
 			<main>
 				<h1>{page.heading}</h1>
 				<p>{page.intro}</p>
 
-				<section class="card">
-					<h2>{page.sectionTitle}</h2>
-					{
-						page.rows.map((row) => (
-							<p>
-								<strong>{row.label}:</strong> {row.value}
-							</p>
-						))
-					}
-					<p>
-						<strong>{page.noteLabel}:</strong> {page.note}
-					</p>
-				</section>
+				{
+					page.cards.map((card) => (
+						<section class="card">
+							<h2>{card.title}</h2>
+							<p>{card.text}</p>
+						</section>
+					))
+				}
 			</main>
 		</div>
 	</div>
@@ -72,15 +67,15 @@ const page = copy.contact;
 	}
 
 	h2 {
-		margin: 0 0 14px;
+		margin: 0 0 10px;
 		font-family: 'Times New Roman', Georgia, serif;
 		font-size: 34px;
 	}
 
 	.card p {
-		margin: 10px 0;
+		margin: 0;
 		font-size: 18px;
-		line-height: 1.5;
+		line-height: 1.6;
 		color: #333;
 	}
 </style>

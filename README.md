@@ -1,46 +1,40 @@
-# Astro Starter Kit: Basics
+# Nebura Coffee Website
+
+Web corporativa de Nebura Coffee en Astro, con contenido centralizado y soporte multiidioma (ES/EN).
+
+## Gestión de contenido (sin tocar HTML)
+
+Para cambiar textos de la web, edita únicamente:
+
+- `src/content/site-content.ts`
+
+Ese archivo contiene todos los textos en español e inglés:
+
+- Menú de navegación
+- Hero de la home
+- Páginas About, Technology, People & Culture y Contact
+- Metadatos SEO (title y description)
+
+## Multiidioma
+
+- Español (principal): `/`, `/about`, `/technology`, `/people-culture`, `/contact`
+- Inglés: `/en`, `/en/about`, `/en/technology`, `/en/people-culture`, `/en/contact`
+
+El selector ES/EN está en la cabecera y te lleva a la misma sección en el otro idioma.
+
+## Ejecutar en local
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Build
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run build
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Deploy
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+El repositorio ya incluye workflow para publicar automáticamente en GitHub Pages al hacer push a `main`.
