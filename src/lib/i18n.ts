@@ -16,9 +16,12 @@ export const getLocalizedPath = (locale: Locale, page: NavKey) => {
 };
 
 export const withBase = (path: string) => {
-	const base = import.meta.env.BASE_URL;
-	const normalizedBase = base.endsWith('/') ? base : `${base}/`;
-	const cleanPath = path === '/' ? '' : path.replace(/^\//, '');
+	const base = import.meta.env.BASE_URL || '/';
+	const baseWithLeadingSlash = base.startsWith('/') ? base : `/${base}`;
+	const normalizedBase = baseWithLeadingSlash.endsWith('/')
+		? baseWithLeadingSlash
+		: `${baseWithLeadingSlash}/`;
+	const cleanPath = path === '/' ? '' : path.replace(/^\/+/, '');
 	if (!cleanPath) return normalizedBase;
-	return `${normalizedBase}${cleanPath}`;
+	return `${normalizedBase}${cleanPath}`.replace(/\/+/g, '/');
 };
