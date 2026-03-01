@@ -4,11 +4,14 @@ Web corporativa de Nebura Coffee en Astro, con contenido centralizado y soporte 
 
 ## Gestión de contenido (sin tocar HTML)
 
-Para cambiar textos de la web, edita únicamente:
+Para cambiar textos de la web, edita únicamente archivos Markdown:
 
-- `src/content/site-content.ts`
+- `src/content/site/es.md`
+- `src/content/site/en.md`
+- `src/content/pages/es/*.md`
+- `src/content/pages/en/*.md`
 
-Ese archivo contiene todos los textos en español e inglés:
+Esos archivos contienen todos los textos en español e inglés:
 
 - Menú de navegación
 - Hero de la home
