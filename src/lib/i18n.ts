@@ -17,6 +17,8 @@ export const getLocalizedPath = (locale: Locale, page: NavKey) => {
 
 export const withBase = (path: string) => {
 	const base = import.meta.env.BASE_URL;
+	const normalizedBase = base.endsWith('/') ? base : `${base}/`;
 	const cleanPath = path === '/' ? '' : path.replace(/^\//, '');
-	return `${base}${cleanPath}`;
+	if (!cleanPath) return normalizedBase;
+	return `${normalizedBase}${cleanPath}`;
 };
